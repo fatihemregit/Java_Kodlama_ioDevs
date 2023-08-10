@@ -20,7 +20,7 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
         this.programmingLanguageRepositoryService = programmingLanguageRepositoryService;
     }
 
-    List<ProgrammingLanguage> forRepatProgrammingLanguages = new ArrayList<ProgrammingLanguage>();
+    List<ProgrammingLanguage> forRepatProgrammingLanguages = programmingLanguageRepositoryService.findAll();
 
     @Override
     public void addProgrammingLanguage(ProgrammingLanguage programmingLanguage) {
@@ -38,14 +38,13 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
             System.out.println("Programlama dili alanı boş bırakılamaz(add)");
             return;
         }
-        forRepatProgrammingLanguages.add(programmingLanguage);
-        programmingLanguageRepositoryService.addProgrammingLanguage(programmingLanguage);
+        this.programmingLanguageRepositoryService.save(programmingLanguage);
     }
 
 
     @Override
     public void deleteProgrammingLanguage(int id) {
-        programmingLanguageRepositoryService.deleteProgrammingLanguage(id);
+        this.programmingLanguageRepositoryService.deleteById(id);
     }
 
     @Override
@@ -56,18 +55,18 @@ public class ProgrammingLanguageManager implements ProgrammingLanguageService {
             System.out.println("Programlama dili alanı boş bırakılamaz(update)");
             return;
         }
-        programmingLanguageRepositoryService.updateProgrammingLanguage(id,newProgrammingLanguage);
+
     }
 
 
     @Override
     public ArrayList<ProgrammingLanguage> listAllProgrammingLanguage() {
-        return programmingLanguageRepositoryService.listAllProgrammingLanguage();
+        return (ArrayList<ProgrammingLanguage>) this.programmingLanguageRepositoryService.findAll();
     }
 
     @Override
     public ProgrammingLanguage getProgrammingLanguagefromid(int id) {
-        return programmingLanguageRepositoryService.getProgrammingLanguagefromid(id);
+        return this.programmingLanguageRepositoryService.findById(id).get();
     }
 
     private boolean programmingLanguageFieldEmptyCheck(ProgrammingLanguage programmingLanguage){
