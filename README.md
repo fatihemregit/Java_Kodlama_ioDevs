@@ -1,5 +1,5 @@
 # Java_Kodlama_io_Devs
-this repository contains codes of engindemirog Java2022camp 4th week homework 1
+This repository contains codes of engindemirog Java2022camp 4th week homework 1
 
 ## Used
 ### Language
